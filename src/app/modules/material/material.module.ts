@@ -53,7 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRadioModule,
     MatGridListModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
     MatSidenavModule,
@@ -79,7 +79,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRadioModule,
     MatGridListModule,
     MatSelectModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class MaterialModule {}
