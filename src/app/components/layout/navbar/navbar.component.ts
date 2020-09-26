@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
+// [Services]
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
+import { SidenavService } from '../../../services/sidenav.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +12,27 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private _auth: AuthService) {}
+  constructor(
+    private _auth: AuthService,
+    private _router: Router,
+    private _toastr: ToastrService,
+    private _sidenav: SidenavService
+  ) {}
+
+  toggleActive: boolean = false;
 
   logOutUser() {
-    this._auth.signOut().subscribe(() => {
-      this._auth.getUsername().subscribe((data) => console.log(data)); // Temporary
+    this._auth.signOut().then(() => {
+      this._toastr.success('Success!', `You've been logged out!`);
+      this._router.navigate(['/']);
     });
+  }
+
+  toggleRightSidenav() {
+    this.toggleActive = !this.toggleActive;
+    this._sidenav.toggle();
+
+    console.log('Clicked');
   }
 
   ngOnInit(): void {}
