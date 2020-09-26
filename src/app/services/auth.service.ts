@@ -8,33 +8,24 @@ import { Subject, from } from 'rxjs';
 export class AuthService {
   constructor(private afAuth: AngularFireAuth) {}
 
-  signIn(email: string, password: string) {
-    return from(this.afAuth.signInWithEmailAndPassword(email, password));
+  async signIn(email: string, password: string) {
+    await this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  signOut() {
-    return from(this.afAuth.signOut());
+  async signOut() {
+    await this.afAuth.signOut();
   }
 
-  signUp(email: string, password: string) {
-    return from(this.afAuth.createUserWithEmailAndPassword(email, password));
+  async signUp(email: string, password: string) {
+    return await this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
   async sendConfirmationEmail() {
     (await this.afAuth.currentUser).sendEmailVerification();
   }
 
-  resetPassword(email: string) {
-    return from(
-      this.afAuth
-        .sendPasswordResetEmail(email)
-        .then(() => {
-          console.log('Password sucessfully changed.');
-        })
-        .catch((err) => {
-          console.log(err.message);
-        })
-    );
+  async resetPassword(email: string) {
+    return await this.afAuth.sendPasswordResetEmail(email);
   }
 
   // Get the User

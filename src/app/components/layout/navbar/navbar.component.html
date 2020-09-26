@@ -1,4 +1,13 @@
 <mat-toolbar>
+  <button
+    mat-mini-fab
+    color="primary"
+    [class.active]="toggleActive"
+    (click)="toggleRightSidenav()"
+    class="rightSidenav_toggle"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
   <span>Online Pharmacy</span>
   <span class="example-spacer"></span>
 
