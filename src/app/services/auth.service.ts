@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Subject, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +25,5 @@ export class AuthService {
 
   async resetPassword(email: string) {
     return await this.afAuth.sendPasswordResetEmail(email);
-  }
-
-  // Get the User
-  getUsername() {
-    return from(this.afAuth.currentUser);
   }
 }

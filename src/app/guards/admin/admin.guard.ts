@@ -11,8 +11,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private _uService: UserService) {}
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -23,11 +24,14 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return new Promise((resolve, reject) => {
       this._uService.getUsername().subscribe((user) => {
-        if (user) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
+        // user.email
+        this._uService.getUserRoles(user.email).subscribe((data) => {
+          if (data[0].roles.includes('Admin')) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
       });
     });
   }

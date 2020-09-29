@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       .signIn(username, password)
       .then(() => {
         this._toastr.success('Logged in!', 'Success!');
-        this._router.navigate(['dashboard']);
+        this._router.navigate(['/']);
       })
       .catch((e) => this._toastr.error(e.message, `Error: ${e.code}`));
   }

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 // [Components]
 import { AppComponent } from './app.component';
@@ -55,6 +56,7 @@ import { SidenavService } from './services/sidenav.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     ToastrModule,
+    HttpClientModule,
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent],
