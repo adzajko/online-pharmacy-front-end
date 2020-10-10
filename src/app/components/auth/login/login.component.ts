@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,25 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private _auth: AuthService,
-    private _toastr: ToastrService,
-    private _router: Router
-  ) {}
+  constructor(private auth: AuthService) {}
+
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
   });
 
   loginUser() {
     const { username, password } = this.loginForm.value;
-    this._auth
-      .signIn(username, password)
-      .then(() => {
-        this._toastr.success('Logged in!', 'Success!');
-        this._router.navigate(['/']);
-      })
-      .catch((e) => this._toastr.error(e.message, `Error: ${e.code}`));
+    this.auth.signIn(username, password);
+  }
+
+  passwordReset(resetForm: NgForm) {
+    this.auth.resetPassword(resetForm.value.recoveryEmail);
   }
 
   ngOnInit() {}

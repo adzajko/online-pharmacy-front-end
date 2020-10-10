@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SidenavService } from './services/sidenav.service';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -15,6 +9,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('rightSidenav') public sidenav: MatSidenav;
+
   constructor(private _sidenav: SidenavService) {}
 
   ngOnInit(): void {}

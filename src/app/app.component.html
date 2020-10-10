@@ -1,10 +1,10 @@
 <header>
   <app-navbar></app-navbar>
 </header>
-<main class="main">
+<main>
   <mat-sidenav-container>
-    <mat-sidenav #rightSidenav opened>
-      <mat-nav-list>
+    <mat-sidenav #rightSidenav>
+      <mat-nav-list (click)="rightSidenav.opened = false">
         <a mat-list-item routerLink="catalogue"> Catalogue </a>
         <a mat-list-item routerLink="orders"> Orders </a>
         <a mat-list-item routerLink="pharmacies"> Pharmacies </a>
@@ -15,7 +15,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div style="height: 100vh">
+      <div style="height: 87vh">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

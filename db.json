@@ -2,8 +2,8 @@
   "users": [
     {
       "id": 1,
-      "email": "test@test.com",
-      "roles": ["User"],
+      "email": "shredgod_lobos@hotmail.com",
+      "roles": ["User", "Admin"],
       "deliveryAddress": "Skopska 13"
     }
   ],

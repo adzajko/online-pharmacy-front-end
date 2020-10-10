@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './modules/material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -49,6 +49,7 @@ import { SidenavService } from './services/sidenav.service';
   ],
   imports: [
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
