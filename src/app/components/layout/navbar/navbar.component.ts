@@ -22,17 +22,12 @@ export class NavbarComponent implements OnInit {
   toggleActive: boolean = false;
 
   logOutUser() {
-    this._auth.signOut().then(() => {
-      this._toastr.success('Success!', `You've been logged out!`);
-      this._router.navigate(['/']);
-    });
+    this._auth.signOut();
   }
 
   toggleRightSidenav() {
     this.toggleActive = !this.toggleActive;
     this._sidenav.toggle();
-
-    console.log('Clicked');
   }
 
   ngOnInit(): void {}

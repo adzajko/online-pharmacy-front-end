@@ -1,29 +1,45 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private ts: ToastrService
+  ) {}
 
-  async signIn(email: string, password: string) {
-    await this.afAuth.signInWithEmailAndPassword(email, password);
+  signIn(email: string, password: string) {
+    this.afAuth.signInWithEmailAndPassword(email, password).then((res) => {
+      this.router.navigate(['/catalogue']);
+      this.ts.success('You are now logged in!', 'Success!');
+    });
   }
 
-  async signOut() {
-    await this.afAuth.signOut();
+  signOut() {
+    this.afAuth.signOut().then(() => {
+      this.router.navigate(['/']);
+      this.ts.success('You are now logged out!', 'Success!');
+    });
   }
 
-  async signUp(email: string, password: string) {
-    return await this.afAuth.createUserWithEmailAndPassword(email, password);
+  signUp(email: string, password: string) {
+    this.afAuth.createUserWithEmailAndPassword(email, password).then((res) => {
+      res.user.sendEmailVerification();
+      this.router.navigate(['/catalogue']);
+      this.ts.success('Thank you for choosing our service!', 'Welcome!');
+    });
   }
 
-  async sendConfirmationEmail() {
-    (await this.afAuth.currentUser).sendEmailVerification();
+  resetPassword(email: string) {
+    this.afAuth.sendPasswordResetEmail(email);
   }
 
-  async resetPassword(email: string) {
-    return await this.afAuth.sendPasswordResetEmail(email);
+  getCurrentUser() {
+    return this.afAuth.user;
   }
 }

@@ -1,1 +1,39 @@
-<p>register works!</p>
+<mat-card class="register-card">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+    <mat-card-subtitle
+      >Please enter your desired email and password</mat-card-subtitle
+    >
+  </mat-card-header>
+  <form [formGroup]="registerForm">
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" />
+      </mat-form-field>
+    </mat-card-content>
+    <small style="color: gray">
+      - Password must be at least 8 characters
+      <br />
+      - must contain at least 1 uppercase letter, 1 lowercase letter, and 1
+      number
+      <br />
+
+      - Can contain special characters
+    </small>
+    <mat-card-actions>
+      <button
+        [disabled]="registerForm.invalid"
+        (click)="onRegisterUser()"
+        mat-raised-button
+        color="primary"
+      >
+        Register
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
