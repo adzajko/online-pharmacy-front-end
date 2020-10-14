@@ -1,1 +1,43 @@
-<p>catalogue works!</p>
+<div class="card-wrapper">
+  <mat-card class="catalogue-card" *ngFor="let product of products">
+    <mat-card-header>
+      <mat-card-title>
+        <span
+          *ngIf="product.f_prescriptionOnly"
+          matBadge="!"
+          matBadgeColor="warn"
+          matTooltip="An active prescription is required!"
+          >{{ product.name }}</span
+        >
+        <span *ngIf="!product.f_prescriptionOnly">{{ product.name }}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <img
+      class="catalogue-image"
+      mat-card-image
+      [src]="product.imagePath"
+      [alt]="product.name"
+    />
+    <mat-card-content class="card-content">
+      <span
+        ><mat-icon color="primary">medical_services</mat-icon>
+        {{ product.pharmacy }}</span
+      >
+      <span><mat-icon color="primary">info</mat-icon>{{ product.type }}</span>
+      <span
+        ><mat-icon color="primary">attach_money</mat-icon
+        >{{ product.price | currency: "USD" }}</span
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onOpenOrderDialog(product)"
+      >
+        Order
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

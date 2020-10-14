@@ -31,6 +31,7 @@ import { environment } from '../environments/environment';
 
 // [Service Providers]
 import { SidenavService } from './services/sidenav.service';
+import { OrderDialogComponent } from './components/shared/order-dialog/order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SidenavService } from './services/sidenav.service';
     CatalogueComponent,
     SubscriptionsComponent,
     PrescriptionsComponent,
+    OrderDialogComponent,
   ],
   imports: [
     MaterialModule,

@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -54,6 +55,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatGridListModule,
     MatSelectModule,
     MatTooltipModule,
+    MatBadgeModule,
   ],
   exports: [
     MatSidenavModule,
@@ -80,6 +82,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatGridListModule,
     MatSelectModule,
     MatTooltipModule,
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}

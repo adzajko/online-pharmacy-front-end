@@ -54,25 +54,52 @@
   ],
   "products": [
     {
-      "id": "75fb6283-7106-41c4-836c-514edcd3280f",
+      "id": "f36059e7-0f82-4568-aea6-30cf86df3412",
       "name": "Aspirin",
-      "type": "Apteka Life Skopje",
-      "imagePath": "https://i5.walmartimages.com/asr/ea87c415-aa2e-4ed2-bc5b-05a8508a7b0a_2.fb6c27f53e8d2bfc134a8e2c469cc2a0.jpeg",
-      "pharmacy": null,
+      "type": "Tablet",
+      "imagePath": "https://www.riteaid.com/shop/media/catalog/product/3/1/312843536371.jpg",
+      "pharmacy": "Ambrozija Farm",
       "price": 0.99,
       "f_prescriptionOnly": false
     },
     {
-      "id": "35eaacf3-f8da-4f40-8706-54c7c24b45e1",
-      "name": "Ritalin",
-      "type": "Viola 24/7",
-      "imagePath": "https://cdn.newsapi.com.au/image/v1/b71b9387474f02220b180c87736dc2b9",
-      "pharmacy": null,
+      "id": "1e34c598-b4c0-40e7-b7e9-68a839ad3f9e",
+      "name": "Tylenol",
+      "type": "Liquid",
+      "imagePath": "https://www.riteaid.com/shop/media/catalog/product/i/m/imqda7bf5svdtnauq7rb.jpg",
+      "pharmacy": "Viola 24/7",
       "price": 1.99,
+      "f_prescriptionOnly": false
+    },
+    {
+      "id": "5a9d15ab-2003-41c2-b6c8-a3c31cc5fde3",
+      "name": "Loratadine",
+      "type": "Tablet",
+      "imagePath": "https://www.firstaidsuppliesonline.com/wp-content/uploads/2017/12/p-15349-214470_loratadineAllergyTabs_30box.jpg",
+      "pharmacy": "Eurofarm",
+      "price": 2.69,
+      "f_prescriptionOnly": false
+    },
+    {
+      "id": "cb26f3b9-1a87-4990-8e0c-f4f94d30dedb",
+      "name": "Ritalin",
+      "type": "Tablet",
+      "imagePath": "https://greenmms.com/wp-content/uploads/2019/11/buy-ritalin-online.jpg",
+      "pharmacy": "Apteka Life Skopje",
+      "price": 1.49,
       "f_prescriptionOnly": true
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": "049ac8a9-4ab3-4e34-ae20-2c9acfcad324",
+      "user": "shredgod_lobos@hotmail.com",
+      "product": "Loratadine",
+      "deliveryDateTime": "2020-10-20T22:00:00.000Z",
+      "f_urgent": false,
+      "status": "Active"
+    }
+  ],
   "subscriptions": [],
   "prescriptions": []
 }
