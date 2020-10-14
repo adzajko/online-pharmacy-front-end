@@ -6,12 +6,14 @@
     <mat-sidenav #rightSidenav>
       <mat-nav-list (click)="rightSidenav.opened = false">
         <a mat-list-item routerLink="catalogue"> Catalogue </a>
-        <a mat-list-item routerLink="orders"> Orders </a>
-        <a mat-list-item routerLink="pharmacies"> Pharmacies </a>
-        <a mat-list-item routerLink="prescriptions"> Prescriptions </a>
-        <a mat-list-item routerLink="products"> Products </a>
-        <a mat-list-item routerLink="subscriptions"> Subscriptions </a>
-        <a mat-list-item routerLink="users"> Users </a>
+        <span *ngIf="isLogged">
+          <a mat-list-item routerLink="orders"> Orders </a>
+          <a mat-list-item routerLink="pharmacies"> Pharmacies </a>
+          <a mat-list-item routerLink="prescriptions"> Prescriptions </a>
+          <a mat-list-item routerLink="products"> Products </a>
+          <a mat-list-item routerLink="subscriptions"> Subscriptions </a>
+          <a mat-list-item routerLink="users"> Users </a>
+        </span>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

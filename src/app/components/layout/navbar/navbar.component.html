@@ -11,9 +11,28 @@
   <span>Online Pharmacy</span>
   <span class="example-spacer"></span>
 
-  <button mat-raised-button routerLink="/register" color="primary">
+  <button
+    *ngIf="!isLogged"
+    mat-raised-button
+    routerLink="/register"
+    color="primary"
+  >
     Register
   </button>
-  <button mat-raised-button routerLink="/login" color="accent">Login</button>
-  <button mat-raised-button (click)="logOutUser()" color="warn">Logout</button>
+  <button
+    mat-raised-button
+    *ngIf="!isLogged"
+    routerLink="/login"
+    color="accent"
+  >
+    Login
+  </button>
+  <button
+    mat-raised-button
+    *ngIf="isLogged"
+    (click)="logOutUser()"
+    color="warn"
+  >
+    Logout
+  </button>
 </mat-toolbar>

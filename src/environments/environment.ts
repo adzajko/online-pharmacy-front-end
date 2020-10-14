@@ -9,5 +9,5 @@ export const environment = {
     messagingSenderId: '117356074668',
     appId: '1:117356074668:web:ae7954102ef31a175a7109',
   },
-  dbBaseUrl: 'http://localhost:3000/',
+  dbBaseUrl: 'http://localhost:3000',
 };
