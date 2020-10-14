@@ -1,0 +1,54 @@
+<mat-card class="dialog-card">
+  <mat-card-header>
+    <mat-card-title>New Order</mat-card-title>
+    <mat-card-subtitle>Make your order here</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="orderForm">
+    <mat-card-content class="dialog-card-content">
+      <mat-form-field appearance="fill">
+        <mat-label>Product</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Pharmacy</mat-label>
+        <input matInput type="text" formControlName="pharmacy" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="deliveryDateTime"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="f_urgent">
+        <mat-label>Urgent</mat-label>
+        <mat-select formControlName="f_urgent">
+          <mat-option [value]="true"> Yes </mat-option>
+          <mat-option [value]="false"> No </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </form>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="true"
+      color="primary"
+      (click)="onOrderProduct()"
+      [disabled]="!isLogged"
+    >
+      Order
+    </button>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="true"
+      color="warn"
+      (click)="orderForm.reset()"
+    >
+      Cancel
+    </button>
+  </mat-card-actions>
+</mat-card>
