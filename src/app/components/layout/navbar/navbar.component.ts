@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 // [Services]
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
 import { SidenavService } from '../../../services/sidenav.service';
 
@@ -11,15 +10,12 @@ import { SidenavService } from '../../../services/sidenav.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
-  constructor(
-    private _auth: AuthService,
-    private _router: Router,
-    private _toastr: ToastrService,
-    private _sidenav: SidenavService
-  ) {}
+export class NavbarComponent implements OnInit, OnDestroy {
+  constructor(private _auth: AuthService, private _sidenav: SidenavService) {}
 
   toggleActive: boolean = false;
+  currentUser: Subscription;
+  isLogged: boolean = false;
 
   logOutUser() {
     this._auth.signOut();
@@ -30,5 +26,17 @@ export class NavbarComponent implements OnInit {
     this._sidenav.toggle();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentUser = this._auth.getCurrentUser().subscribe((user) => {
+      if (user) {
+        this.isLogged = true;
+      } else {
+        this.isLogged = false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.currentUser.unsubscribe();
+  }
 }

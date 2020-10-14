@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 0px;
+  margin: 36px 128px;
+}
+
+.new-product {
+  grid-area: 1 / 1 / 6 / 2;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-grid {
+  grid-area: 1 / 2 / 6 / 6;
+}
+
+.f_prescriptionOnly {
+  margin-top: 12px;
+}

@@ -1,14 +1,77 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "076868fc-2c3b-4868-a71c-6516066dc1b1",
       "email": "shredgod_lobos@hotmail.com",
-      "roles": ["User", "Admin"],
+      "roles": [
+        "User",
+        "Admin"
+      ],
       "deliveryAddress": "Skopska 13"
     }
   ],
-  "pharmacies": [],
-  "products": [],
+  "pharmacies": [
+    {
+      "id": "66ea5be3-1347-40d4-8dd3-cc01eef6f009",
+      "name": "Apteka Life Skopje",
+      "address": "Boulevard Kocho Racin 7",
+      "worksFrom": "8:00",
+      "worksTo": "21:00",
+      "f_NightShift": false
+    },
+    {
+      "id": "cbb6d43f-7811-4f13-8956-ab694eb024af",
+      "name": "Ambrozija Farm",
+      "address": "Partizanska, Skopje 1000",
+      "worksFrom": "9:00",
+      "worksTo": "21:00",
+      "f_NightShift": true
+    },
+    {
+      "id": "efe23f21-58e9-41eb-81c1-4bc63c11f154",
+      "name": "Viola 24/7",
+      "address": "Boulevard Jane Sandanski, Skopje 1000",
+      "worksFrom": "00:00",
+      "worksTo": "00:00",
+      "f_NightShift": true
+    },
+    {
+      "id": "d361640a-abdb-4d4f-9090-dcefedfdbd64",
+      "name": "Eurofarm",
+      "address": "Anton Popov 5, Skopje 1000",
+      "worksFrom": "09:00",
+      "worksTo": "22:00",
+      "f_NightShift": true
+    },
+    {
+      "id": "8037d53f-653d-4b0e-809e-7d02ee0b2886",
+      "name": "Bilna Apteka",
+      "address": "Victor Hugo, Skopje 1000",
+      "worksFrom": "10:00",
+      "worksTo": "19:30",
+      "f_NightShift": false
+    }
+  ],
+  "products": [
+    {
+      "id": "75fb6283-7106-41c4-836c-514edcd3280f",
+      "name": "Aspirin",
+      "type": "Apteka Life Skopje",
+      "imagePath": "https://i5.walmartimages.com/asr/ea87c415-aa2e-4ed2-bc5b-05a8508a7b0a_2.fb6c27f53e8d2bfc134a8e2c469cc2a0.jpeg",
+      "pharmacy": null,
+      "price": 0.99,
+      "f_prescriptionOnly": false
+    },
+    {
+      "id": "35eaacf3-f8da-4f40-8706-54c7c24b45e1",
+      "name": "Ritalin",
+      "type": "Viola 24/7",
+      "imagePath": "https://cdn.newsapi.com.au/image/v1/b71b9387474f02220b180c87736dc2b9",
+      "pharmacy": null,
+      "price": 1.99,
+      "f_prescriptionOnly": true
+    }
+  ],
   "orders": [],
   "subscriptions": [],
   "prescriptions": []

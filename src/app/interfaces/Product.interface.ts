@@ -1,6 +1,9 @@
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   type: string;
+  imagePath: string;
+  pharmacy: string;
+  price: number;
   f_prescriptionOnly: boolean;
 }

@@ -7,12 +7,13 @@ import {
 } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(private _uService: UserService) {}
+  constructor(private _uService: UserService, private _auth: AuthService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -23,15 +24,16 @@ export class AdminGuard implements CanActivate {
     | boolean
     | UrlTree {
     return new Promise((resolve, reject) => {
-      this._uService.getUsername().subscribe((user) => {
-        // user.email
-        this._uService.getUserRoles(user.email).subscribe((data) => {
-          if (data[0].roles.includes('Admin')) {
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        });
+      this._auth.getCurrentUser().subscribe((user) => {
+        if (user) {
+          this._uService.getUserRoles(user.email).subscribe((data) => {
+            if (data[0].roles.includes('Admin')) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          });
+        }
       });
     });
   }

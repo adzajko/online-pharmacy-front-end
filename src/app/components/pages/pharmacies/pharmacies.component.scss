@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 0px;
+  margin: 36px 128px;
+}
+
+.new-pharmacy {
+  grid-area: 1 / 1 / 6 / 2;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.pharmacy-grid {
+  grid-area: 1 / 2 / 6 / 6;
+}
+
+.nightshift-select {
+  margin-top: 16px;
+}
