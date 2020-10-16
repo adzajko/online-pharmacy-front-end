@@ -10,7 +10,10 @@ import * as uuid from 'uuid';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private auth: AuthService, private _us: UserService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   registerForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
@@ -23,8 +26,8 @@ export class RegisterComponent implements OnInit {
 
   onRegisterUser() {
     const { username, password, deliveryAddress } = this.registerForm.value;
-    this.auth.signUp(username, password);
-    this._us.createNewUser({
+    this.authService.signUp(username, password);
+    this.userService.createNewUser({
       id: uuid(),
       email: username,
       roles: ['User'],

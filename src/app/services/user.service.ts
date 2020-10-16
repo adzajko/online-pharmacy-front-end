@@ -7,14 +7,14 @@ import { User } from '../interfaces/User.interface';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private _http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getUserRoles(email: string) {
-    return this._http.get(`${environment.dbBaseUrl}/users?email=${email}`);
+    return this.http.get(`${environment.dbBaseUrl}/users?email=${email}`);
   }
 
   createNewUser(user: User) {
-    this._http.post(`${environment.dbBaseUrl}/users`, user).subscribe((res) => {
+    this.http.post(`${environment.dbBaseUrl}/users`, user).subscribe((res) => {
       console.log(res);
     });
   }

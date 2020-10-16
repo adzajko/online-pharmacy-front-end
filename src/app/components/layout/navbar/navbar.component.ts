@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 // [Services]
 import { AuthService } from '../../../services/auth.service';
@@ -11,23 +11,26 @@ import { SidenavService } from '../../../services/sidenav.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  constructor(private _auth: AuthService, private _sidenav: SidenavService) {}
+  constructor(
+    private authService: AuthService,
+    private sidenavService: SidenavService
+  ) {}
 
   toggleActive: boolean = false;
   currentUser: Subscription;
   isLogged: boolean = false;
 
   logOutUser() {
-    this._auth.signOut();
+    this.authService.signOut();
   }
 
   toggleRightSidenav() {
     this.toggleActive = !this.toggleActive;
-    this._sidenav.toggle();
+    this.sidenavService.toggle();
   }
 
   ngOnInit(): void {
-    this.currentUser = this._auth.getCurrentUser().subscribe((user) => {
+    this.currentUser = this.authService.getCurrentUser().subscribe((user) => {
       if (user) {
         this.isLogged = true;
       } else {

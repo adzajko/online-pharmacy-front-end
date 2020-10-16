@@ -13,7 +13,10 @@ import { AuthService } from 'src/app/services/auth.service';
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(private _uService: UserService, private _auth: AuthService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -24,9 +27,9 @@ export class AdminGuard implements CanActivate {
     | boolean
     | UrlTree {
     return new Promise((resolve, reject) => {
-      this._auth.getCurrentUser().subscribe((user) => {
+      this.authService.getCurrentUser().subscribe((user) => {
         if (user) {
-          this._uService.getUserRoles(user.email).subscribe((data) => {
+          this.userService.getUserRoles(user.email).subscribe((data) => {
             if (data[0].roles.includes('Admin')) {
               resolve(true);
             } else {

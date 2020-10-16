@@ -8,7 +8,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private auth: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     const { username, password } = this.loginForm.value;
-    this.auth.signIn(username, password);
+    this.authService.signIn(username, password);
   }
 
   passwordReset(resetForm: NgForm) {
-    this.auth.resetPassword(resetForm.value.recoveryEmail);
+    this.authService.resetPassword(resetForm.value.recoveryEmail);
   }
 
   ngOnInit() {}

@@ -8,15 +8,15 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class OrderService {
-  constructor(private _http: HttpClient, private _ts: ToastrService) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   postNewOrder(order: Order) {
-    this._http.post(`${environment.dbBaseUrl}/orders`, order).subscribe(
+    this.http.post(`${environment.dbBaseUrl}/orders`, order).subscribe(
       () => {
-        this._ts.success('Order placed!', 'Success!');
+        this.toastr.success('Order placed!', 'Success!');
       },
       (err) => {
-        this._ts.error(`${err}`, 'Success!');
+        this.toastr.error(`${err}`, 'Success!');
       }
     );
   }

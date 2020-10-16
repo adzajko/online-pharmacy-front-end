@@ -21,10 +21,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   currentUser: Subscription;
   isLogged: boolean = false;
 
-  constructor(private _sidenav: SidenavService, private _auth: AuthService) {}
+  constructor(
+    private sidenavService: SidenavService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.currentUser = this._auth.getCurrentUser().subscribe((user) => {
+    this.currentUser = this.authService.getCurrentUser().subscribe((user) => {
       if (user) {
         this.isLogged = true;
       } else {
@@ -34,7 +37,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this._sidenav.setSidenav(this.sidenav);
+    this.sidenavService.setSidenav(this.sidenav);
   }
 
   ngOnDestroy() {

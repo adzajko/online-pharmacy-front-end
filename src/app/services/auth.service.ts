@@ -10,20 +10,20 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
-    private ts: ToastrService
+    private toastr: ToastrService
   ) {}
 
   signIn(email: string, password: string) {
     this.afAuth.signInWithEmailAndPassword(email, password).then((res) => {
       this.router.navigate(['/catalogue']);
-      this.ts.success('You are now logged in!', 'Success!');
+      this.toastr.success('You are now logged in!', 'Success!');
     });
   }
 
   signOut() {
     this.afAuth.signOut().then(() => {
       this.router.navigate(['/']);
-      this.ts.success('You are now logged out!', 'Success!');
+      this.toastr.success('You are now logged out!', 'Success!');
     });
   }
 
@@ -31,7 +31,7 @@ export class AuthService {
     this.afAuth.createUserWithEmailAndPassword(email, password).then((res) => {
       res.user.sendEmailVerification();
       this.router.navigate(['/catalogue']);
-      this.ts.success('Thank you for choosing our service!', 'Welcome!');
+      this.toastr.success('Thank you for choosing our service!', 'Welcome!');
     });
   }
 

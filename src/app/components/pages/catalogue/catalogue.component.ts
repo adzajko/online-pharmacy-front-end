@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/interfaces/Product.interface';
 import { ProductService } from 'src/app/services/product.service';
-import { OrderService } from '../../../services/order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderDialogComponent } from '../../shared/order-dialog/order-dialog.component';
 
@@ -15,11 +14,14 @@ export class CatalogueComponent implements OnInit, OnDestroy {
   products: Product[];
   productsSubscription: Subscription;
 
-  constructor(private _pRs: ProductService, private dialog: MatDialog) {}
+  constructor(
+    private productService: ProductService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this._pRs.getAllProducts();
-    this.productsSubscription = this._pRs.productsChanged.subscribe(
+    this.productService.getAllProducts();
+    this.productsSubscription = this.productService.productsChanged.subscribe(
       (products: Product[]) => {
         this.products = products;
       }
