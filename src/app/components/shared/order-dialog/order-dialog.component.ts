@@ -23,13 +23,12 @@ export class OrderDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Product,
-    private _os: OrderService,
-    private _auth: AuthService
+    private orderService: OrderService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this._auth.getCurrentUser().subscribe((user) => {
-      console.log(user);
+    this.authService.getCurrentUser().subscribe((user) => {
       if (user) {
         this.isLogged = true;
       } else {
@@ -39,8 +38,8 @@ export class OrderDialogComponent implements OnInit {
   }
 
   onOrderProduct() {
-    this._auth.getCurrentUser().subscribe((user) => {
-      this._os.postNewOrder({
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.orderService.postNewOrder({
         id: uuid(),
         user: user.email,
         product: this.data.name,

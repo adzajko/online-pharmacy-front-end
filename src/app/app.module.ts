@@ -21,6 +21,7 @@ import { OrdersComponent } from './components/pages/orders/orders.component';
 import { CatalogueComponent } from './components/pages/catalogue/catalogue.component';
 import { SubscriptionsComponent } from './components/pages/subscriptions/subscriptions.component';
 import { PrescriptionsComponent } from './components/pages/prescriptions/prescriptions.component';
+import { OrderDialogComponent } from './components/shared/order-dialog/order-dialog.component';
 
 // [Firebase Imports]
 import { AngularFireModule } from '@angular/fire';
@@ -31,7 +32,6 @@ import { environment } from '../environments/environment';
 
 // [Service Providers]
 import { SidenavService } from './services/sidenav.service';
-import { OrderDialogComponent } from './components/shared/order-dialog/order-dialog.component';
 
 @NgModule({
   declarations: [

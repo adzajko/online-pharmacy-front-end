@@ -48,7 +48,10 @@ export class ProductsComponent implements OnInit, OnDestroy, AfterViewInit {
     'f_prescriptionOnly',
   ];
 
-  constructor(private _pHs: PharmacyService, private _pRs: ProductService) {}
+  constructor(
+    private pharmacyService: PharmacyService,
+    private productService: ProductService
+  ) {}
 
   productForm = new FormGroup({
     name: new FormControl(null, Validators.required),
@@ -64,14 +67,14 @@ export class ProductsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this._pHs.getAllPharmacies();
-    this._pRs.getAllProducts();
-    this.pharmacySubscription = this._pHs.pharmaciesChanged.subscribe(
+    this.pharmacyService.getAllPharmacies();
+    this.productService.getAllProducts();
+    this.pharmacySubscription = this.pharmacyService.pharmaciesChanged.subscribe(
       (pharmacies: Pharmacy[]) => {
         this.pharmacies = pharmacies;
       }
     );
-    this.productSubscription = this._pRs.productsChanged.subscribe(
+    this.productSubscription = this.productService.productsChanged.subscribe(
       (products: Product[]) => {
         this.productDataSource.data = products;
       }
@@ -88,7 +91,7 @@ export class ProductsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSubmitProduct() {
-    this._pRs.postSingleProduct({
+    this.productService.postSingleProduct({
       id: uuid(),
       ...this.productForm.value,
     });

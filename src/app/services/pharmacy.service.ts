@@ -11,28 +11,28 @@ import { from, Subject } from 'rxjs';
 export class PharmacyService {
   pharmaciesChanged = new Subject<Pharmacy[]>();
 
-  constructor(private _http: HttpClient, private _ts: ToastrService) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   getAllPharmacies() {
-    return from(
-      this._http.get(`${environment.dbBaseUrl}/pharmacies`)
-    ).subscribe((pharmacies: Pharmacy[]) => {
-      this.pharmaciesChanged.next(pharmacies);
-    });
+    return from(this.http.get(`${environment.dbBaseUrl}/pharmacies`)).subscribe(
+      (pharmacies: Pharmacy[]) => {
+        this.pharmaciesChanged.next(pharmacies);
+      }
+    );
   }
 
   getPharmacyById(id: string) {
-    return this._http.get(`${environment.dbBaseUrl}/pharmacies?id=${id}`);
+    return this.http.get(`${environment.dbBaseUrl}/pharmacies?id=${id}`);
   }
 
   postPharmacy(pharmacy: Pharmacy) {
-    this._http.post(`${environment.dbBaseUrl}/pharmacies`, pharmacy).subscribe(
+    this.http.post(`${environment.dbBaseUrl}/pharmacies`, pharmacy).subscribe(
       () => {
         this.getAllPharmacies();
-        this._ts.success('Pharmacy added!', 'Success!');
+        this.toastr.success('Pharmacy added!', 'Success!');
       },
       (err) => {
-        this._ts.error(`${err}`, 'Error!');
+        this.toastr.error(`${err}`, 'Error!');
       }
     );
   }

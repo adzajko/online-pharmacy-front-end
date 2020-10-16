@@ -38,15 +38,15 @@ export class PharmaciesComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _ps: PharmacyService) {}
+  constructor(private pharmacyService: PharmacyService) {}
 
   ngAfterViewInit() {
     this.pharmaciesDataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
-    this._ps.getAllPharmacies();
-    this.pharmaciesSubscription = this._ps.pharmaciesChanged.subscribe(
+    this.pharmacyService.getAllPharmacies();
+    this.pharmaciesSubscription = this.pharmacyService.pharmaciesChanged.subscribe(
       (pharmacies: Pharmacy[]) => {
         this.pharmaciesDataSource.data = pharmacies;
       }
@@ -62,7 +62,7 @@ export class PharmaciesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSubmitPharmacy() {
-    this._ps.postPharmacy({
+    this.pharmacyService.postPharmacy({
       id: uuid(),
       ...this.productForm.value,
     });

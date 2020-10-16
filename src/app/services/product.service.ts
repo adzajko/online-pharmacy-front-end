@@ -11,10 +11,10 @@ import { from, Subject } from 'rxjs';
 export class ProductService {
   productsChanged = new Subject<Product[]>();
 
-  constructor(private _http: HttpClient, private _ts: ToastrService) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   getAllProducts() {
-    return from(this._http.get(`${environment.dbBaseUrl}/products`)).subscribe(
+    return from(this.http.get(`${environment.dbBaseUrl}/products`)).subscribe(
       (products: Product[]) => {
         this.productsChanged.next(products);
       }
@@ -22,19 +22,19 @@ export class ProductService {
   }
 
   getProductById(id: number) {
-    this._http.get(`${environment.dbBaseUrl}/products?id=${id}`);
+    this.http.get(`${environment.dbBaseUrl}/products?id=${id}`);
   }
 
   postSingleProduct(product: Product) {
-    return this._http
+    return this.http
       .post(`${environment.dbBaseUrl}/products`, product)
       .subscribe(
         () => {
           this.getAllProducts();
-          this._ts.success('Product saved!', 'Succeess!');
+          this.toastr.success('Product saved!', 'Succeess!');
         },
         (err) => {
-          this._ts.error(`${err}`, 'Error!');
+          this.toastr.error(`${err}`, 'Error!');
         }
       );
   }
